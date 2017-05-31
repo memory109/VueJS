@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script type="text/javascript" src="vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        {{ msg | capitalize }}
+        {{ msg | capitalize | reverse }}
+
+    </div>
+    <script type="text/javascript">
+    var app = new Vue({
+        el: '#app',
+        data: {
+            msg: 'abfdk'
+        },
+        filters: {
+            capitalize: function(value) {
+                if (!value) return '';
+                value = value.toString();
+                return value.toUpperCase();
+            },
+            reverse:function(value){
+            	if(!value) return "";
+            	value = value.toString();
+            	return value.split('').reverse().join('');
+            }
+        }
+    });
+    </script>
+</body>
+
+</html>

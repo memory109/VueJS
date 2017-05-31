@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script type="text/javascript" src="vue.js"></script>
+</head>
+
+<body>
+	<!-- 指令（Directives）是带有 v- 前缀的特殊属性 -->
+    <div id="app">
+    	<p v-if="seen">Now you see me</p>
+    	<a v-bind:href="url"></a>
+    	<a v-on:click="doSomething">click</a>
+    	<form v-on:submit.prevent="onSubmit">
+    		<input type="text">
+    		<input type="submit">
+    	</form>
+    </div>
+    <script type="text/javascript">
+    var app = new Vue({
+        el: '#app',
+        data: {
+			seen:true,
+			url:'http://www.baidu.com',
+
+        },
+        methods:{
+        	doSomething:function(){
+        		alert("111");
+        	},
+        	onSubmit:function(){
+        		// .prevent修饰符告诉v-on指令对于触发的事件调用 event.preventDefault() 即禁止提交表单
+        		// alert("222");
+        	}
+        }
+    })
+    </script>
+</body>
+
+</html>

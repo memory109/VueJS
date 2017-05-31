@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script type="text/javascript" src="vue.js"></script>
+    <style type="text/css">
+    .static {
+        font-weight: bolder;
+    }
+    
+    .text-danger {
+        color: red;
+        font-size: 40px;
+    }
+    
+    .active {
+        color: lightblue;
+    }
+    .baz{
+		font-size: 30px;
+    }
+    .boo{
+		color:#436653;
+    }
+    .foo{
+		font-style: italic;
+    }
+    .bar{
+		font-weight: bolder;
+    }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <p v-bind:class="{active :isActive}">test class</p>
+        <input type="text" v-model="isActive">
+        <div class="static" v-bind:class="{'active' :isActive,'text-danger':hasError }">
+            dsfsdfsdf
+        </div>
+        <div class="static" v-bind:class="classObject">
+            s999999
+        </div>
+        <div class="static" v-bind:class="classObject1">
+            s999999
+        </div>
+    </div>
+    <br>
+    <br>
+    <div id="app1">
+        <div v-bind:class="[activeClass, errorClass]">111111</div>
+        <div v-bind:class="[isActive ? activeClass : '', errorClass]">2222</div>
+        <div v-bind:class="[{ active: isActive }, errorClass]">数组语法 对象语法结合使用</div>
+        <my-component class="baz boo"></my-component>
+    </div>
+    <script type="text/javascript">
+
+    //用在组件上
+    Vue.component('my-component',{
+		template:'<div class="foo bar">Hello vue!!!</div>'
+    });
+
+    // 对象语法
+    var app = new Vue({
+        el: '#app',
+        data: {
+            isActive: true,
+            hasError: false,
+            error: null,
+            classObject: {
+                'active': true,
+                'text-danger': true
+            }
+        },
+        computed: {
+            classObject1: function() {
+                return {
+                    'active': this.isActive && !this.hasError,
+                    'text-danger': this.error && this.error.type == 'fatal'
+                }
+            }
+        }
+    });
+
+    //数组语法
+    var app1 = new Vue({
+        el: '#app1',
+        data: {
+            isActive: false,
+            activeClass: 'active',
+            errorClass: 'text-danger'
+        }
+    });
+
+    </script>
+</body>
+
+</html>

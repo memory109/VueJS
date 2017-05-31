@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script type="text/javascript" src="vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <my-component v-bind:aa="todo"></my-component>
+        <component></component>
+    	<test></test>
+    </div>
+    <div id="app1">
+    	<test></test>
+    </div>
+    <script type="text/javascript">
+    Vue.component('my-component', {
+        props: ['aa'],
+        template: '<div>{{aa}}</div>'
+    });
+    Vue.component('component', {
+        template: '<div>qqqqwwwweeeee</div>'
+    });
+    var child = {
+        template: '<div>A custom component!</div>'
+    }
+    var app = new Vue({
+        el: '#app',
+        data: {
+            todo: 'dddd'
+        }
+    });
+    var app1 = new Vue({
+        el: '#app1',
+        components: {
+            'test': child
+        }
+    })
+    </script>
+</body>
+
+</html>

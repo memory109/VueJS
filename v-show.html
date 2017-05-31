@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script type="text/javascript" src='vue.js'></script>
+</head>
+
+<body>
+    <div id="app">
+        <h1 v-show="ok">Hello!</h1>
+        <!-- 不支持<template>语法 -->
+        <template v-show="ok">
+            <h1>Hello!</h1>
+        </template>
+    </div>
+    <script type="text/javascript">
+    var app = new Vue({
+        el: '#app',
+        data: {
+            ok: true
+        }
+    })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>表单元素</title>
+    <script type="text/javascript" src="vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <!-- 文本 -->
+        <input v-model="message" placeholder="edit me">
+        <p>Message is :{{message}} </p>
+        <!-- 多行文本 -->
+        <span>Multiline message is :</span>
+        <p style="white-space: pre">{{message1}}</p>
+        <textarea v-model="message1" placeholder="edit multiline message"></textarea>
+        <!-- 复选框 -->
+        <input type="checkbox" id='checkbox' v-model="value">
+        <label for="checkbox">{{value}}</label>
+        <br>
+        <input type="checkbox" id="lily" value="lily" v-model="array">
+        <label for="lily">lily</label>
+        <input type="checkbox" id="lucy" value="lucy" v-model="array">
+        <label for="lucy">lucy</label>
+        <input type="checkbox" id="tom" value="tom" v-model="array">
+        <label for="tom">tom</label>
+        <br>
+        <span>Checked names:{{array}}</span>
+        <br>
+        <!-- 单选按钮 -->
+        <input type="radio" id="one" value="one" v-model="picked">
+        <label for="one">one</label>
+        <br>
+        <input type="radio" id="two" value="two" v-model="picked">
+        <label for="two">two</label>
+        <span>Picked:{{picked}}</span>
+        <br>
+        <!-- 选择列表 -->
+        <select v-model="selected">
+            <option>A</option>
+            <option>B</option>
+            <option>C</option>
+        </select>
+        <span>Selected:{{selected}}</span>
+        <br>
+        <select v-model="selected1" multiple>
+            <option>A</option>
+            <option>B</option>
+            <option>C</option>
+        </select>
+        <span>Selected:{{selected1}}</span>
+        <br>
+        <br>
+        <!-- 绑定value值 -->
+        <input type="checkbox" id="check" v-model="toggle" v-bind:true-value="a" v-bind:false-value="b">wretr
+        <label for="check">{{toggle}}</label>
+        <br>
+        <input type="radio" v-model="radio" v-bind:value="a">sdfsafa
+        <input type="radio" v-model="radio" v-bind:value="b">asfaasds
+        <label>{{radio}}</label>
+        <br>
+        <select v-model="select">
+            <option v-bind:value="{ number: 123 }">dsds</option>
+            <option v-bind:value="{ number: 354 }">rwer</option>
+        </select>
+        <label>{{select}}</label>
+        <br><br>
+        <input v-model.lazy="msg">{{msg}} <br><br>
+        <input v-model.number="age" type="number"> <br> <br>
+        <input v-model="msg1">
+        <input v-model.trim="msg1">
+    </div>
+    <script type="text/javascript">
+    var app = new Vue({
+        el: '#app',
+        data: {
+            message: '',
+            message1: '',
+            value: false,
+            array: [],
+            picked: '',
+            selected: '',
+            selected1: [],
+            toggle: '',
+            a: 'aaa',
+            b: 'bbb',
+            radio: '',
+            select:'',
+            msg:'ddd',
+            age:'766',
+            msg1:' qqqq'
+        }
+    })
+    </script>
+</body>
+
+</html>

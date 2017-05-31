@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script type="text/javascript" src="vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <ol>
+            <li v-for='item in items'>
+                {{item.message}}
+            </li>
+        </ol>
+        <ul>
+            <li v-for="(item,index) in items">
+                {{parentMessage}} - {{index}} - {{item.message}}
+            </li>
+        </ul>
+        <ol>
+            <li v-for='(item,index) of items'>
+                {{index}} . {{item.message}}
+            </li>
+        </ol>
+        <!-- template  v-for  -->
+        <ul>
+            <template v-for="(item,index) in items">
+                <li>{{item.message }}</li>
+                <li class="divider">{{index}}</li>
+            </template>
+        </ul>
+        <!-- 对象迭代 -->
+        <ul>
+            <li v-for="value in person">
+                {{value}}
+            </li>
+            <li v-for="(value,key) in person">
+                {{key}}:{{value}}
+            </li>
+            <li v-for="(value,key,index) in person">
+                {{index}}.{{key}}:{{value}}
+            </li>
+        </ul>
+        <!-- 整数迭代 -->
+        <div>
+            <p v-for="num in 10">{{num}}</p>
+        </div>
+        <!-- component  v-for -->
+        <component v-for="item in items" v-bind:item="item"></component>
+    </div>
+    <script type="text/javascript">
+    Vue.component('component', {
+        props: ['item'],
+        template: '<p>{{item.message}}</p>'
+    });
+    var app = new Vue({
+        el: '#app',
+        data: {
+            parentMessage: 'parent',
+            items: [{
+                message: 'foo'
+            }, {
+                message: 'bar'
+            }],
+            person: {
+                firstName: 'John',
+                lastName: 'Doe',
+                age: 30
+            }
+        }
+    });
+    </script>
+</body>
+
+</html>

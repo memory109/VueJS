@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>计算属性</title>
+    <script type="text/javascript" src="vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <p>Original message: "{{ message }}"</p>
+        <p>Computed reversed message: "{{ reversedMessage }}"</p>
+        <p>Computed reversed message1: "{{ reversedMessage1() }}"</p>
+        <p>{{now()}}</p>
+    </div>
+    <div id="app1">
+        <p>{{firstName}}</p>
+        <input type="text" v-model="firstName">
+        <p>{{lastName}}</p>
+        <input type="text" v-model="lastName">
+        <p>{{fullName}}</p>
+    </div>
+    <div id="app2">
+        <p>{{firstName}}</p>
+        <input type="text" v-model="firstName">
+        <p>{{lastName}}</p>
+        <input type="text" v-model="lastName">
+        <p>{{fullName}}</p>
+    </div>
+    <script type="text/javascript">
+    var app = new Vue({
+        el: '#app',
+        data: {
+            message: 'hello'
+        },
+        computed: {
+            reversedMessage: function() {
+                return this.message.split('').reverse().join('');
+            }
+        },
+        methods: {
+            reversedMessage1: function() {
+                return this.message.split('').reverse().join('');
+            },
+            now: function() {
+                return Date.now()
+            }
+        }
+    });
+
+    //计算属性 vs
+    var app1 = new Vue({
+        el: '#app1',
+        data: {
+            firstName: 'foo',
+            lastName: 'bar'
+        },
+        computed: {
+            fullName: function() {
+                return this.firstName + ' ' + this.lastName;
+            }
+        }
+    }); 
+    // Watched Property  相比而言 计算属性更为方便
+    var app2 = new Vue({
+        el: '#app2',
+        data: {
+            firstName: 'foo',
+            lastName: 'bar',
+            fullName: 'foo bar'
+        },
+        watch: {
+            firstName: function(val) {
+                this.fullName = val + ' ' + this.lastName;
+            },
+            lastName: function(val) {
+                this.fullName = this.firstName + ' ' + val;
+            }
+        }
+    });
+    </script>
+</body>
+
+</html>

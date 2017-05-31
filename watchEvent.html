@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>监听事件</title>
+    <script type="text/javascript" src="vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <button v-on:click='add'>增加1</button>
+        <button v-on:click='number+=1'>增加1</button>
+        <p>这个按钮被点击了{{number}}次</p>
+        <button v-on:click="greet">Greet</button>
+        <br>
+        <br>
+        <button v-on:click="say('Hi')">Say Hi</button>
+        <button v-on:click="say('What')">Say What</button>
+        <br>
+        <br>
+        <button v-on:click="warn('Form cannot be submitted yet.', $event)">Submit</button>
+        <div v-on:click="doThat">
+            <a v-on:click.stop="doThis">stop(阻止冒泡)</a>
+        </div>
+        <form v-on:submit.prevent="onSubmit">
+            <input type="text">
+            <input type="submit" value="提交">
+        </form>
+        <!-- 添加事件侦听器时使用事件捕获模式 -->
+        <div v-on:click.capture="doThat">...
+            <a v-on:click="doThis">捕获</a>
+        </div>
+        <!-- 只当事件在该元素本身（而不是子元素）触发时触发回调 -->
+        <div v-on:click.self="doThat">dsfd
+            <p>6666</p>
+        </div>
+        <!-- 只执行一次事件 一次绑定 -->
+        <a v-on:click.once="doThis">ddddd</a>
+    </div>
+    <script type="text/javascript">
+    var app = new Vue({
+        el: '#app',
+        data: {
+            number: 0,
+            name: 'Vue.js'
+        },
+        methods: {
+            add: function() {
+                this.number += 1;
+            },
+            greet: function(event) {
+                alert("Hello" + this.name + '!!!');
+                alert(event.target.tagName);
+            },
+            say: function(content) {
+                alert(content);
+            },
+            warn: function(msg, event) {
+                if (event)
+                    event.preventDefault();
+                alert(msg);
+            },
+            doThat: function() {
+                alert("that");
+            },
+            doThis: function() {
+                alert("this");
+            },
+            onSubmit: function() {
+                alert("未提交(阻止默认事件)");
+            }
+        }
+    });
+    </script>
+</body>
+
+</html>

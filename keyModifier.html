@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>按键修饰符</title>
+    <script type="text/javascript" src="vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <input v-on:keyup.13="submit('enter')" value="enter">
+        <input v-on:keyup.enter="submit('enter')" value="enter">
+        <input @keyup.enter="submit('enter')" value="enter">
+        <input v-on:keyup.tab.prevent="submit('tab')" value="tab">
+        <input v-on:keyup.delete="submit('delete')" value="delete">
+        <input v-on:keyup.space="submit('space')" value="space">
+        <input v-on:keyup.esc="submit('esc')" value="esc">
+        <input v-on:keyup.up="submit('up')" value="up">
+        <input v-on:keyup.down="submit('down')" value="down">
+        <input v-on:keyup.left="submit('left')" value="left">
+        <input v-on:keyup.right="submit('right')" value="right">
+        <input v-on:keyup.ctrl="submit('ctrl')" value="ctrl">
+        <input v-on:keyup.alt="submit('alt')" value="alt">
+        <input v-on:keyup.shift="submit('shift')" value="shift">
+        <input v-on:keyup.meta="submit('meta')" value="meta">
+    </div>
+    <script type="text/javascript">
+    var app = new Vue({
+        el: '#app',
+        methods: {
+            submit: function(value) {
+                alert(value);
+            }
+        }
+    });
+    </script>
+</body>
+
+</html>

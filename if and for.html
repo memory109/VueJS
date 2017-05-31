@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script type="text/javascript" src="vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <p v-if="seen">Now you see me</p>
+    </div>
+    <div id="app1">
+        <ol>
+            <li v-for="todo in todos">
+                {{todo.text}}
+            </li>
+        </ol>
+    </div>
+    <script type="text/javascript">
+    var app = new Vue({
+        el: '#app',
+        data: {
+            seen: true
+        }
+    });
+    var app1 = new Vue({
+        el: '#app1',
+        data: {
+            todos: [{
+                text: 'Learn JavaScript'
+            }, {
+                text: 'Learn Vue'
+            }, {
+                text: 'Build something awesome'
+            }]
+        }
+    });
+    </script>
+</body>
+
+</html>

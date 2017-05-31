@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script type="text/javascript" src="vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        {{message}}
+    </div>
+    <div id="app1">
+        <span v-bind:title="message1">
+    		Hover your mouse over me for a few seconds to see my dynamically bound title!
+    	</span>
+    </div>
+    <script type="text/javascript">
+    var app = new Vue({
+        el: '#app',
+        data: {
+            message: 'Hello World!!!'
+        }
+    });
+    var app1 = new Vue({
+        el: '#app1',
+        data: {
+            message1: 'You loaded this page on ' + new Date()
+        }
+    });
+    </script>
+</body>
+
+</html>

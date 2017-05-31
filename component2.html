@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script type="text/javascript" src="vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <p>{{total}}</p>
+        <button-counter v-on:cal="calculate"></button-counter>
+        <button-counter v-on:cal="calculate"></button-counter>
+    </div>
+    <script type="text/javascript">
+    Vue.component('button-counter', {
+        template: '<button v-on:click="count">{{counter}}</button>',
+        data: function() {
+            return {
+                counter: 0
+            }
+        },
+        methods: {
+            count: function() {
+                this.counter += 1;
+                this.$emit('cal')
+            }
+        }
+    })
+    var app = new Vue({
+        el: '#app',
+        data: {
+            total: 0
+        },
+        methods: {
+            calculate: function() {
+                this.total += 1;
+            }
+        }
+    })
+    </script>
+</body>
+
+</html>

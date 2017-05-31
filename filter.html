@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>过滤或排序</title>
+    <script type="text/javascript" src="vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <ol>
+            <li v-for="n in evenNumber">{{n}}</li>
+        </ol>
+        <ol>
+            <li v-for="n in even(number)">{{n}}</li>
+        </ol>
+    </div>
+    <script type="text/javascript">
+    var app = new Vue({
+        el: '#app',
+        data: {
+            number: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+        },
+        computed: {
+            evenNumber: function() {
+                return this.number.filter(function(number) {
+                    return number % 2 === 0;
+                })
+            }
+        },
+        methods: {
+            even: function(numbers) {
+                return numbers.filter(function(number) {
+                    return number % 2 === 0;
+                });
+            }
+        }
+    })
+    </script>
+</body>
+
+</html>

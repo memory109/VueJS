@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script type="text/javascript" src='vue.js'></script>
+</head>
+
+<body>
+    <div id="app">
+        <p v-bind:id="dynamicId"></p>
+        <input type="text" v-model="dynamicId">
+        <button v-bind:disabled="someDynamicCondition">ok</button>
+        <br/> 
+        {{number+1}} 
+        {{ok?'yes':'no'}} 
+        {{message.split('').reverse().join('')}}
+        <div v-bind:id="'list-' + id"></div>
+    </div>
+    <script type="text/javascript">
+    var app = new Vue({
+        el: '#app',
+        data: {
+            dynamicId: 'aaa',
+            someDynamicCondition: true,
+            number: 11,
+            ok: true,
+            message: 'JavaScript',
+            id: 666
+        }
+    });
+    </script>
+</body>
+
+</html>
